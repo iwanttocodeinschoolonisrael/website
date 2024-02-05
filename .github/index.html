@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-3.5 Turbo Web App</title>
+    <script src="https://cdn.jsdelivr.net/npm/openai"></script>
+</head>
+<body>
+    <h1>GPT-3.5 Turbo Web App</h1>
+
+    <label for="userInput">Enter your prompt:</label>
+    <input type="text" id="userInput">
+    <button onclick="submitPrompt()">Submit</button>
+
+    <div id="output"></div>
+
+    <script>
+        function submitPrompt() {
+            const userInput = document.getElementById('userInput').value;
+
+            // Set your OpenAI API key
+            const apiKey = 'asst_fYhZbjOdpYpImrrMtShF1G6N'';  // Replace with your actual API key
+            openai.configure({ key: apiKey });
+
+            // Make an API request with the provided identifier
+            const taskId = 'asst_fYhZbjOdpYpImrrMtShF1G6N';  // Replace with your actual task identifier
+            openai.Completion.create({
+                engine: "text-davinci-003",
+                prompt: userInput,
+                max_tokens: 100,
+                task_id: taskId
+            }).then(response => {
+                // Display the generated text
+                document.getElementById('output').innerText = response.choices[0].text;
+            }).catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
